@@ -1,4 +1,4 @@
-# match
+# match [![Build Status](https://travis-ci.org/zweifisch/php-pattern-matching.png?branch=master)](https://travis-ci.org/zweifisch/php-pattern-matching)
 
 pattern matching for php
 
