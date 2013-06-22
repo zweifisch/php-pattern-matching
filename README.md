@@ -2,6 +2,11 @@
 
 pattern matching for php
 
+install via composer
+```sh
+composer require 'zweifisch/match:*'
+```
+
 destruct value
 ```php
 $matched = \match\destruct(['a',['b',['c','d']]], [1,[2,[3,4]]]);
