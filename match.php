@@ -10,13 +10,13 @@ function destruct($pattern, $value, &$ret=[])
 	}
 	elseif(is_array($pattern))
 	{
-		if(!is_array($value)) return false;
+		if(!is_array($value)) return [];
 		foreach($pattern as $key=>$val)
 		{
-			if(!array_key_exists($key,$value)) return false;
+			if(!array_key_exists($key,$value)) return [];
 			if(is_array($val))
 			{
-				if(!destruct($val, $value[$key], $ret)) return false;
+				if(!destruct($val, $value[$key], $ret)) return [];
 			}
 			else
 			{
@@ -26,7 +26,7 @@ function destruct($pattern, $value, &$ret=[])
 	}
 	else
 	{
-		return false;
+		return [];
 	}
 	return $ret;
 }

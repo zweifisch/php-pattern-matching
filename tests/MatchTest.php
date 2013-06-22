@@ -17,9 +17,10 @@ class MatchTest extends PHPUnit_Framework_TestCase
 
 	public function testDestructFail()
 	{
-		$this->assertSame(false, \match\destruct(['a','b','c'], [1,2]));
-		$this->assertSame(false, \match\destruct(['a','b','c'], null));
-		$this->assertSame(false, \match\destruct(['a','a'=>['c']], [1,'a'=>2,'b'=>3]));
+		$this->assertSame([], \match\destruct(['a','b','c'], [1,2]));
+		$this->assertSame([], \match\destruct(['a','b','c'], null));
+		$this->assertSame([], \match\destruct(['a','a'=>['c']], [1,'a'=>2,'b'=>3]));
+		$this->assertSame(0, extract(\match\destruct(['a'], 1)));
 	}
 
 	public function testLet()

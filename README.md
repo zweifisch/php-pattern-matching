@@ -9,11 +9,9 @@ composer require 'zweifisch/match:*'
 
 destruct value
 ```php
-$matched = \match\destruct(['a',['b',['c','d']]], [1,[2,[3,4]]]);
-if ($matched) {
-	extract($matched);
-	echo "$a $b $c $d"; // "1 2 3 4"
-}
+$array = [1,[2,[3,4]]];
+extract(\match\destruct(['a',['b',['c','d']]], $array)) or die("match failed");
+echo "$a $b $c $d"; // "1 2 3 4"
 ```
 
 bind to a closure
