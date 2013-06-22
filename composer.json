@@ -1,0 +1,25 @@
+{
+    "authors": [
+        {
+            "email": "zf.pascal@gmail.com", 
+            "name": "Feng Zhou"
+        }
+    ], 
+    "autoload": {
+        "files": ["match.php"]
+    }, 
+    "description": "pattern matching for php", 
+    "homepage": "https://github.com/zweifisch/php-pattern-matching", 
+    "keywords": [
+        "pattern-matching"
+    ], 
+    "license": "MIT", 
+    "name": "zweifisch/match", 
+    "require": {
+        "php": ">=5.4.0"
+    }, 
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "type": "library"
+}

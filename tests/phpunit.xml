@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+	backupStaticAttributes="false"
+	colors="true"
+	processIsolation="false"
+	stopOnFailure="false"
+	bootstrap="bootstrap.php"
+	syntaxCheck="true" >
+	<testsuites>
+		<testsuite name="zweifisch/match">
+			<directory>./</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
