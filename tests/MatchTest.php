@@ -25,16 +25,16 @@ class MatchTest extends PHPUnit_Framework_TestCase
 
 	public function testLet()
 	{
-		$result = \match\let(['a'], [1], 'b', 2, function(){
-			return $this->a + $this->b;
+		$result = \match\let(['a'], [1], 'b', 2, function($a, $b){
+			return $a + $b;
 		});
 		$this->assertEquals(3, $result);
 	}
 
 	public function testLetFail()
 	{
-		$result = \match\let(['a','c'], [1], function(){
-			return $this->a + $this->b;
+		$result = \match\let(['a','c'], [1], function($a, $b){
+			return $a + $b;
 		});
 		$this->assertFalse($result);
 	}

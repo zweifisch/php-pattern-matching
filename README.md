@@ -3,34 +3,39 @@
 pattern matching for php
 
 install via composer
+
 ```sh
 composer require 'zweifisch/match:*'
 ```
 
 destruct value
+
 ```php
 $array = [1,[2,[3,4]]];
 extract(\match\destruct(['a',['b',['c','d']]], $array)) or die("match failed");
 echo "$a $b $c $d"; // "1 2 3 4"
 ```
 
-bind to a closure
+passing to a function
+
 ```php
 $input = ['method'=>'foo', 'params'=>['bar']];
-$result = \match\let(['method'=>'func', 'params'=>['arg1']], $input, function(){
-	return "$this->func $this->arg1";
+$pattern = ['method'=>'func', 'params'=>['arg1']];
+$result = \match\let($pattern, $input, function($arg1, $func){
+	return "$func $arg1";
 });
 // "foo bar"
 ```
 
-destruct and bind multiple values
+destruct multiple values
+
 ```php
 $input = ['method'=>'foo', 'params'=>['bar']];
 $result = \match\let(
 	['method'=>'func', 'params'=>['arg1']], $input
 	'now', time(),
-	function(){
-		return "$this->func $this->arg1 $this->now";
+	function($func, $arg1, $now){
+		return "$func $arg1 $now";
 	}
 );
 ```

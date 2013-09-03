@@ -2,6 +2,8 @@
 
 namespace match;
 
+use ReflectionFunction;
+
 function destruct($pattern, $value, &$ret=[])
 {
 	if(is_string($pattern))
@@ -37,10 +39,38 @@ function let()
 	$block = array_pop($args);
 	$len = count($args);
 	$matched = [];
-	for($i=0;$i<$len;$i+=2)
+	for($i=0; $i<$len; $i+=2)
 	{
 		if(!destruct($args[$i], $args[$i+1], $matched)) return false;
 	}
-	$block = $block->bindTo((object)$matched);
-	return $block();
+	if(is_null($params = getKeywordArgs($block, $matched)))
+	{
+		return false;
+	}
+	return call_user_func_array($block, $params);
+}
+
+function getKeywordArgs($closure, $args)
+{
+	$reflection = new ReflectionFunction($closure);
+	$ret= [];
+	foreach($reflection->getParameters() as $param)
+	{
+		if(isset($args[$param->name]))
+		{
+			$ret[] = $args[$param->name];
+		}
+		else
+		{
+			if($param->isOptional())
+			{
+				$ret[] = $param->getDefaultValue();
+			}
+			else
+			{
+				return null;
+			}
+		}
+	}
+	return $ret;
 }
